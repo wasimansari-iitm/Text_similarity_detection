@@ -4,145 +4,146 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Duplicate Text Predictor</title>
+    <link rel="stylesheet" href="styles.css">
     <style>
-    body {
-        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-        background: #0f172a;
-        color: #e2e8f0;
-        line-height: 1.6;
-        font-size: 105%;
-    }
-    .flex-wrap {
-        display: flex;
-        flex-direction: column;
-        gap: 2rem;
-        justify-content: flex-start;
-        align-items: center;
-        max-width: 910px;
-        margin: 2.5rem auto 0 auto;
-        width: 100%;
-        padding: 0 1rem;
-    }
-    .predictor-container, .desc-container {
-        width: 100%;
-        background: #1e293b;
-        border-radius: 12px;
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-        padding: 2rem;
-        box-sizing: border-box;
-        border: 1px solid #334155;
-    }
-    h2 {
-        text-align: center;
-        color: #38bdf8;
-        font-weight: 600;
-        margin: 0 0 1rem 0;
-        font-size: 1.89rem;
-    }
-    h3 {
-        color: #94a3b8;
-        font-weight: 500;
-        font-size: 1.3125rem;
-        margin: 1.5rem 0 0.5rem 0;
-    }
-    label {
-        display: block;
-        margin-top: 1.25rem;
-        color: #94a3b8;
-        font-size: 0.91875rem;
-        font-weight: 500;
-    }
-    input[type="text"], textarea {
-        width: 100%;
-        padding: 0.75rem;
-        margin-top: 0.5rem;
-        border: 1px solid #334155;
-        border-radius: 6px;
-        background: #1e293b;
-        color: #e2e8f0;
-        font-size: 1.05rem;
-        transition: border-color 0.2s;
-    }
-    input[type="text"]:focus, textarea:focus {
-        outline: none;
-        border-color: #38bdf8;
-        box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.1);
-    }
-    button {
-        margin-top: 1.5rem;
-        width: 100%;
-        padding: 0.875rem;
-        background: #38bdf8;
-        color: #082f49;
-        border: none;
-        border-radius: 6px;
-        font-size: 1.05rem;
-        font-weight: 600;
-        cursor: pointer;
-        transition: all 0.2s;
-    }
-    button:hover {
-        background: #22d3ee;
-        transform: translateY(-1px);
-    }
-    .result {
-        margin-top: 1.5rem;
-        padding: 1rem;
-        border-radius: 6px;
-        background: #1e293b;
-        color: #38bdf8;
-        font-size: 1.155rem;
-        text-align: center;
-        border: 1px solid #334155;
-    }
-    .prob {
-        color: #94a3b8;
-        font-size: 0.91875rem;
-        display: block;
-        margin-top: 0.5rem;
-    }
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        background: #1e293b;
-        border-radius: 6px;
-        overflow: hidden;
-        margin-top: 1rem;
-    }
-    th, td {
-        padding: 0.75rem;
-        border: 1px solid #334155 !important;
-        text-align: left;
-        font-size: 1.05rem;
-    }
-    th {
-        background: #0f172a !important;
-        color: #38bdf8 !important;
-        font-weight: 600;
-    }
-    td {
-        color: #e2e8f0 !important;
-    }
-    footer {
-        margin-top: 2rem;
-        text-align: center;
-        color: #64748b;
-        font-size: 0.875rem;
-    }
-    .desc-container li {
-        color: #94a3b8;
-        margin-bottom: 0.75rem;
-        padding-left: 0.5rem;
-    }
-    .desc-container li b {
-        color: #38bdf8;
-        font-weight: 500;
-    }
-    .desc-container h2 {
-        color: #38bdf8;
-        font-size: 1.575rem;
-        margin-bottom: 1.5rem;
-    }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0f172a;
+            color: #e2e8f0;
+            line-height: 1.6;
+            font-size: 105%;
+        }
+        .flex-wrap {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            justify-content: flex-start;
+            align-items: center;
+            max-width: 910px;
+            margin: 2.5rem auto 0 auto;
+            width: 100%;
+            padding: 0 1rem;
+        }
+        .predictor-container, .desc-container {
+            width: 100%;
+            background: #1e293b;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            box-sizing: border-box;
+            border: 1px solid #334155;
+        }
+        h2 {
+            text-align: center;
+            color: #38bdf8;
+            font-weight: 600;
+            margin: 0 0 1rem 0;
+            font-size: 1.89rem;
+        }
+        h3 {
+            color: #94a3b8;
+            font-weight: 500;
+            font-size: 1.3125rem;
+            margin: 1.5rem 0 0.5rem 0;
+        }
+        label {
+            display: block;
+            margin-top: 1.25rem;
+            color: #94a3b8;
+            font-size: 0.91875rem;
+            font-weight: 500;
+        }
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 0.75rem;
+            margin-top: 0.5rem;
+            border: 1px solid #334155;
+            border-radius: 6px;
+            background: #1e293b;
+            color: #e2e8f0;
+            font-size: 1.05rem;
+            transition: border-color 0.2s;
+        }
+        input[type="text"]:focus, textarea:focus {
+            outline: none;
+            border-color: #38bdf8;
+            box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.1);
+        }
+        button {
+            margin-top: 1.5rem;
+            width: 100%;
+            padding: 0.875rem;
+            background: #38bdf8;
+            color: #082f49;
+            border: none;
+            border-radius: 6px;
+            font-size: 1.05rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        button:hover {
+            background: #22d3ee;
+            transform: translateY(-1px);
+        }
+        .result {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            border-radius: 6px;
+            background: #1e293b;
+            color: #38bdf8;
+            font-size: 1.155rem;
+            text-align: center;
+            border: 1px solid #334155;
+        }
+        .prob {
+            color: #94a3b8;
+            font-size: 0.91875rem;
+            display: block;
+            margin-top: 0.5rem;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #1e293b;
+            border-radius: 6px;
+            overflow: hidden;
+            margin-top: 1rem;
+        }
+        th, td {
+            padding: 0.75rem;
+            border: 1px solid #334155 !important;
+            text-align: left;
+            font-size: 1.05rem;
+        }
+        th {
+            background: #0f172a !important;
+            color: #38bdf8 !important;
+            font-weight: 600;
+        }
+        td {
+            color: #e2e8f0 !important;
+        }
+        footer {
+            margin-top: 2rem;
+            text-align: center;
+            color: #64748b;
+            font-size: 0.875rem;
+        }
+        .desc-container li {
+            color: #94a3b8;
+            margin-bottom: 0.75rem;
+            padding-left: 0.5rem;
+        }
+        .desc-container li b {
+            color: #38bdf8;
+            font-weight: 500;
+        }
+        .desc-container h2 {
+            color: #38bdf8;
+            font-size: 1.575rem;
+            margin-bottom: 1.5rem;
+        }
     </style>
 </head>
 <body>
@@ -156,10 +157,10 @@
             <h3 style="text-align: center; margin-bottom: 1.5rem; color: #94a3b8;">Duplicate Text Predictor</h3>
             <form method="POST">
                 <label for="question1">Text 1:</label>
-                <textarea id="question1" name="question1" rows="3" required>{{ q1 }}</textarea>
+                <textarea id="question1" name="question1" rows="3" required></textarea>
 
                 <label for="question2">Text 2:</label>
-                <textarea id="question2" name="question2" rows="3" required>{{ q2 }}</textarea>
+                <textarea id="question2" name="question2" rows="3" required></textarea>
 
                 <button type="submit">Predict</button>
             </form>
@@ -170,25 +171,17 @@
                         <th>Question 1</th>
                         <th>Question 2</th>
                     </tr>
-                    {% if q1 or q2 %}
                     <tr>
-                        <td>{{ q1 }}</td>
-                        <td>{{ q2 }}</td>
+                        <td>Sample Question 1</td>
+                        <td>Sample Question 2</td>
                     </tr>
-                    {% endif %}
                 </table>
             </div>
-            {% if prediction is not none %}
-                <div class="result">
-                    <strong>Prediction:</strong>
-                    {% if prediction == 1 %}
-                        <span>Duplicate</span>
-                    {% else %}
-                        <span>Not Duplicate</span>
-                    {% endif %}
-                    <span class="prob">Probability of being duplicate: {{ '%.4f'|format(proba) }}</span>
-                </div>
-            {% endif %}
+            <div class="result">
+                <strong>Prediction:</strong>
+                <span>Duplicate</span>
+                <span class="prob">Probability of being duplicate: 0.85</span>
+            </div>
             <footer>
                 With <span style="color: #38bdf8;">&#10084;</span> from Wasim Ansari<br>
                 Courtesy to AI companions: Copilot and GPT
@@ -209,5 +202,14 @@
             </ul>
         </div>
     </div>
+    <script>
+        // Responsive adjustments
+        window.addEventListener('resize', () => {
+            const containers = document.querySelectorAll('.predictor-container, .desc-container');
+            containers.forEach(container => {
+                container.style.height = `calc(${window.innerHeight}px - 60px)`;
+            });
+        });
+    </script>
 </body>
 </html>
