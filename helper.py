@@ -9,6 +9,7 @@ import nltk
 
 nltk.download('stopwords')
 nltk.download('punkt_tab')
+nltk.download('wordnet')
 
 word2vec = pickle.load(open('word2vec_model.pkl', 'rb'))
 scaler = pickle.load(open('scaler.pkl', 'rb'))

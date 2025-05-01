@@ -10,7 +10,7 @@ COPY requirements.txt ./
 
 # Install dependencies
 RUN pip install --no-cache-dir -r requirements.txt \
-    && python -m nltk.downloader stopwords punkt_tab
+    && python -m nltk.downloader stopwords punkt_tab wordnet
 
 # Copy the rest of the application code
 COPY . .
