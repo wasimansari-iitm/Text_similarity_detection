@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Duplicate Question Predictor</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f7f7f7; }
+        .container { max-width: 600px; margin: 40px auto; background: #fff; padding: 30px 40px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        h2 { text-align: center; color: #333; }
+        label { display: block; margin-top: 20px; color: #444; }
+        input[type="text"], textarea { width: 100%; padding: 10px; margin-top: 8px; border: 1px solid #ccc; border-radius: 4px; }
+        button { margin-top: 25px; width: 100%; padding: 12px; background: #007bff; color: #fff; border: none; border-radius: 4px; font-size: 16px; cursor: pointer; }
+        button:hover { background: #0056b3; }
+        .result { margin-top: 30px; padding: 15px; border-radius: 4px; background: #e9f7ef; color: #155724; font-size: 18px; text-align: center; }
+        .prob { color: #333; font-size: 15px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Duplicate Question Predictor</h2>
+        <div id="flash-messages">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="result flash-msg" style="background: #fff3cd; color: #856404; border: 1px solid #ffeeba; margin-bottom: 10px;">
+                            <strong>{{ category|capitalize }}:</strong> {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </div>
+        <script>
+            window.onload = function() {
+                setTimeout(function() {
+                    var flashes = document.querySelectorAll('.flash-msg');
+                    flashes.forEach(function(flash) {
+                        flash.style.display = 'none';
+                    });
+                }, 1500);
+            };
+        </script>
+        <form method="POST">
+            <label for="question1">Question 1:</label>
+            <textarea id="question1" name="question1" rows="3" required>{{ q1 }}</textarea>
+
+            <label for="question2">Question 2:</label>
+            <textarea id="question2" name="question2" rows="3" required>{{ q2 }}</textarea>
+
+            <button type="submit">Predict</button>
+        </form>
+        <div style="margin-top:30px;">
+            <h3 style="font-size:18px; color:#333;">Questions Asked</h3>
+            <table style="width:100%; border-collapse:collapse;">
+                <tr style="background:#f1f1f1;">
+                    <th style="padding:8px; border:1px solid #ddd;">Question 1</th>
+                    <th style="padding:8px; border:1px solid #ddd;">Question 2</th>
+                </tr>
+                {% if q1 or q2 %}
+                <tr>
+                    <td style="padding:8px; border:1px solid #ddd;">{{ q1 }}</td>
+                    <td style="padding:8px; border:1px solid #ddd;">{{ q2 }}</td>
+                </tr>
+                {% endif %}
+            </table>
+        </div>
+        {% if prediction is not none %}
+            <div class="result">
+                <strong>Prediction:</strong>
+                {% if prediction == 1 %}
+                    <span>Duplicate</span>
+                {% else %}
+                    <span>Not Duplicate</span>
+                {% endif %}<br>
+                <span class="prob">Probability of being duplicate: {{ '%.4f'|format(proba) }}</span>
+            </div>
+        {% endif %}
+        <footer style="margin-top:40px; text-align:center; color:#888; font-size:15px;">
+            With <span style="font-size:18px;">&#10084;&#65039;</span> from Wasim Ansari<br>
+            Courtesy to AI companions: Copilot and GPT
+        </footer>
+    </div>
+</body>
+</html>
