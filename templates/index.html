@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Duplicate Text Predictor</title>
-    <link rel="stylesheet" href="styles.css">
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -99,8 +98,6 @@
         .prob {
             color: #94a3b8;
             font-size: 0.91875rem;
-            display: block;
-            margin-top: 0.5rem;
         }
         table {
             width: 100%;
@@ -164,6 +161,22 @@
 
                 <button type="submit">Predict</button>
             </form>
+            <div class="result">
+                <strong>Prediction:</strong>
+                {% if prediction == 1 %}
+                    <span>Duplicate</span>
+                {% else %}
+                    <span>Not Duplicate</span>
+                {% endif %}
+                <br>
+                <span class="prob">Probability of being duplicate: 
+                {% if proba is not none %}
+                    {{ '%.4f'|format(proba) }}
+                {% else %}
+                    N/A
+                {% endif %}
+                </span>
+            </div>
             <div style="margin-top: 1.5rem;">
                 <h3>Questions Asked</h3>
                 <table>
@@ -171,16 +184,13 @@
                         <th>Question 1</th>
                         <th>Question 2</th>
                     </tr>
+                    {% for q1, q2 in asked_questions %}
                     <tr>
-                        <td>Sample Question 1</td>
-                        <td>Sample Question 2</td>
+                        <td>{{ q1 }}</td>
+                        <td>{{ q2 }}</td>
                     </tr>
+                    {% endfor %}
                 </table>
-            </div>
-            <div class="result">
-                <strong>Prediction:</strong>
-                <span>Duplicate</span>
-                <span class="prob">Probability of being duplicate: 0.85</span>
             </div>
             <footer>
                 With <span style="color: #38bdf8;">&#10084;</span> from Wasim Ansari<br>
