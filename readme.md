@@ -109,13 +109,10 @@ Made with ❤️ by **Wasim Ansari**
 
 ---
 
-🤝 Acknowledgements
-
-    ✨ Built using GitHub Copilot + ChatGPT + your perseverance.
-
-    💙 Inspired by the Quora Duplicate Question Detection problem.
-
-    🌟 Designed with simplicity and elegance in mind.
+## 🤝 Acknowledgements
+- ✨ Built using GitHub Copilot + ChatGPT + your perseverance.
+- 💙 Inspired by the Quora Duplicate Question Detection problem.
+- 🌟 Designed with simplicity and elegance in mind.
 
 ---
 
